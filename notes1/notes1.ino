@@ -6,7 +6,6 @@
 #endif
 
 #define PIN         6         // Neopixels are connected there
-#define MIC_PIN     1         // Microphone is attached to Trinket GPIO #2/Gemma D2 (A1)
 #define DC_OFFSET   0         // DC offset in mic signal - if unusure, leave 0
 #define NOISE       100       // Noise/hum/interference in mic signal
 #define SAMPLES     60        // Length of buffer for dynamic level adjustment
@@ -14,7 +13,7 @@
 
 // constants won't change:
 const int clefPin = 10;       // the number of the G clef pin
-const int threshold = 330;    // for incoming MIC values to trigger the light show
+const int threshold = 331;    // for incoming MIC values to trigger the light show
 
 // variables will change:
 int buttonState = 0;          // variable for reading the pushbutton status
@@ -22,9 +21,9 @@ int sensorValue = 0;          // initialize MIC value
 int numTimes = 5;             // number of times to repeat show
 int pixel = 0;                // which pixel in the string gets lit
 int wait1 = 2;                // delay between pixels in a strand
-int wait2 = 500;              // delay before turning each strand off
+int wait2 = 400;              // delay before turning each strand off
 int wait3 = 30;               // delay in fading G clef
-int fadeAmount = 5;           // increment to fade G clef
+int fadeAmount = 15;           // increment to fade G clef
 int brightness = 0;           // how bright the clef is
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
@@ -47,6 +46,7 @@ void setup() {
   Serial.begin(9600);
   // initialize the G clef pin as an output:
   pinMode(clefPin, OUTPUT);
+  pinMode(MIC_PIN, INPUT);
 
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
@@ -54,20 +54,17 @@ void setup() {
 
 
 void loop() {
-  digitalWrite(clefPin,LOW);
-  // read the input on analog pin 0:
+
+  //  read the input on analog pin 0:
   int sensorValue = analogRead(MIC_PIN);
 
   if (sensorValue > threshold){
 
+    Serial.println(sensorValue);
+
     for(int i = 0; i<numTimes; i++){
 
-      if (brightness <254) {
-        analogWrite(clefPin, brightness);
-        brightness = brightness + fadeAmount;
-      } else {
-
-          delay(wait2);
+        analogWrite(clefPin, 255);
 
           // turns on strand 1 pixels
           for(pixel = 0; pixel < 14; pixel ++) {
@@ -120,22 +117,26 @@ void loop() {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
-        }
       }
+
+      //fades down the G clef from max to min in increments of 5 points:
+      for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 5) {
+       // sets the value (range from 0 to 255):
+       analogWrite(clefPin, fadeValue);
+       // wait for 30 milliseconds to see the dimming effect
+       delay(30);
+      }
+
   }
    else {
 
       // turns off all the neopixels
-      for(pixel = 0; pixel < 60; pixel ++) {
+        for(pixel = 0; pixel < 60; pixel ++) {
 
         strip.setPixelColor(pixel,0,0,0);
         strip.show();
-        //fades down the G clef
-        if (brightness > 1) {
-          analogWrite(clefPin, brightness);
-          brightness = brightness - fadeAmount;
-          delay(wait1);
-        }
+        //delay(wait2);
+
 
       }
 
