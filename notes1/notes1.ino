@@ -62,7 +62,7 @@ void loop() {
 
     for(int i = 0; i<numTimes; i++){
 
-      if (brightness <255) {
+      if (brightness <254) {
         analogWrite(clefPin, brightness);
         brightness = brightness + fadeAmount;
       } else {
