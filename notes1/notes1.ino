@@ -72,53 +72,53 @@ void loop() {
         analogWrite(CLEF_PIN, 255);
 
           // turns on strand 1 pixels
-          for(pixel = 0; pixel < 14; pixel ++) {
+          for(pixel = 0; pixel < 35; pixel ++) {
             strip.setPixelColor(pixel,255,0,0);
             strip.show();
             delay(wait1);
           }
           // turns off strand 1 pixels
           delay(wait2);
-          for(pixel = 0; pixel < 14; pixel ++) {
+          for(pixel = 0; pixel < 35; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
           // turns on strand 2 pixels
-          for(pixel = 14; pixel < 30; pixel ++) {
+          for(pixel = 14; pixel < 71; pixel ++) {
             strip.setPixelColor(pixel,0,255,0);
             strip.show();
             delay(wait1);
           }
           // turns off strand 2 pixels
           delay(wait2);
-          for(pixel = 14; pixel < 30; pixel ++) {
+          for(pixel = 14; pixel < 71; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
           // turns on strand 3 pixels
-          for(pixel = 31; pixel < 45; pixel ++) {
+          for(pixel = 31; pixel < 107; pixel ++) {
             strip.setPixelColor(pixel,0,0,255);
             strip.show();
             delay(wait1);
           }
           // turns off strand 3 pixels
           delay(wait2);
-          for(pixel = 31; pixel < 45; pixel ++) {
+          for(pixel = 31; pixel < 107; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
           // turns on strand 4 pixels
-          for(pixel = 46; pixel < 60; pixel ++) {
+          for(pixel = 46; pixel < 143; pixel ++) {
             strip.setPixelColor(pixel,0,150,150);
             strip.show();
             delay(wait1);
           }
           // turns off strand 4 pixels
           delay(wait2);
-          for(pixel = 46; pixel < 60; pixel ++) {
+          for(pixel = 46; pixel < 143; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
