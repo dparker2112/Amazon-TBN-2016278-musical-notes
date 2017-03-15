@@ -17,7 +17,7 @@
 int micValue = 0;             // initialize MIC value
 int numTimes = 3;             // number of times (-1) to repeat show
 int pixel = 0;                // which pixel in the string gets lit
-int wait1 = 2;                // delay between chasing pixels in a strand
+int wait1 = 0;                // delay between chasing pixels in a strand
 int wait2 = 400;              // delay before turning each strand off
 int wait3 = 30;               // delay in fading G clef
 int fadeAmount = 15;          // increment to fade G clef
@@ -31,7 +31,7 @@ int brightness = 0;           // how bright the clef is
 //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(61, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(144, PIN, NEO_GRB + NEO_KHZ800);
 
 // IMPORTANT: To reduce NeoPixel burnout risk, add 1000 uF capacitor across
 // pixel power leads, add 300 - 500 Ohm resistor on first pixel's data input
@@ -41,7 +41,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(61, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  //Serial.begin(9600);  Uncomment to debug values
   // initialize the G clef pin as an output:
   pinMode(CLEF_PIN, OUTPUT);
   pinMode(MIC_PIN, INPUT);
@@ -64,8 +64,8 @@ void loop() {
 
   if (micValue > potValue){
 
-    Serial.println(potValue);
-    Serial.println(micValue);
+    //Serial.println(potValue);   Uncomment to debug values
+    //Serial.println(micValue);   Uncomment to debug values
 
     for(int i = 0; i<numTimes; i++){
 
@@ -85,40 +85,40 @@ void loop() {
           }
 
           // turns on strand 2 pixels
-          for(pixel = 14; pixel < 71; pixel ++) {
+          for(pixel = 36; pixel < 71; pixel ++) {
             strip.setPixelColor(pixel,0,255,0);
             strip.show();
             delay(wait1);
           }
           // turns off strand 2 pixels
           delay(wait2);
-          for(pixel = 14; pixel < 71; pixel ++) {
+          for(pixel = 36; pixel < 71; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
           // turns on strand 3 pixels
-          for(pixel = 31; pixel < 107; pixel ++) {
+          for(pixel = 72; pixel < 107; pixel ++) {
             strip.setPixelColor(pixel,0,0,255);
             strip.show();
             delay(wait1);
           }
           // turns off strand 3 pixels
           delay(wait2);
-          for(pixel = 31; pixel < 107; pixel ++) {
+          for(pixel = 72; pixel < 107; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
           // turns on strand 4 pixels
-          for(pixel = 46; pixel < 143; pixel ++) {
+          for(pixel = 108; pixel < 143; pixel ++) {
             strip.setPixelColor(pixel,0,150,150);
             strip.show();
             delay(wait1);
           }
           // turns off strand 4 pixels
           delay(wait2);
-          for(pixel = 46; pixel < 143; pixel ++) {
+          for(pixel = 108; pixel < 143; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
