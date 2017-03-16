@@ -75,7 +75,7 @@ void loop() {
           for(pixel = 0; pixel < 35; pixel ++) {
             strip.setPixelColor(pixel,255,0,0);
             strip.show();
-            delay(wait1);
+            //delay(wait1);
           }
           // turns off strand 1 pixels
           delay(wait2);
@@ -88,7 +88,7 @@ void loop() {
           for(pixel = 36; pixel < 71; pixel ++) {
             strip.setPixelColor(pixel,0,255,0);
             strip.show();
-            delay(wait1);
+            //delay(wait1);
           }
           // turns off strand 2 pixels
           delay(wait2);
@@ -101,7 +101,7 @@ void loop() {
           for(pixel = 72; pixel < 107; pixel ++) {
             strip.setPixelColor(pixel,0,0,255);
             strip.show();
-            delay(wait1);
+            //delay(wait1);
           }
           // turns off strand 3 pixels
           delay(wait2);
@@ -114,7 +114,7 @@ void loop() {
           for(pixel = 108; pixel < 143; pixel ++) {
             strip.setPixelColor(pixel,0,150,150);
             strip.show();
-            delay(wait1);
+            //delay(wait1);
           }
           // turns off strand 4 pixels
           delay(wait2);
@@ -131,6 +131,7 @@ void loop() {
        // wait for 30 milliseconds to see the dimming effect
        delay(30);
       }
+    delay(2000);
 
   }
    else {
