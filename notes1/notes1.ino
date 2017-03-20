@@ -1,14 +1,9 @@
 #include <Arduino.h>
 
 #include <Adafruit_NeoPixel.h>
-#ifdef __AVR__
-  #include <avr/power.h>
-#endif
+
 
 #define PIN         6         // Neopixels are connected there
-//#define DC_OFFSET   0         // DC offset in mic signal - if unusure, leave 0
-//#define NOISE       100       // Noise/hum/interference in mic signal
-//#define SAMPLES     60        // Length of buffer for dynamic level adjustment
 #define MIC_PIN     A0        // MIC is connected here
 #define CLEF_PIN    10        // the number of the G clef pin
 #define POT_PIN     A1        // Sensitivity adjustment pot connected here
@@ -41,7 +36,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(144, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  //Serial.begin(9600);  Uncomment to debug values
+  //Serial.begin(9600);  //Uncomment to debug values
   // initialize the G clef pin as an output:
   pinMode(CLEF_PIN, OUTPUT);
   pinMode(MIC_PIN, INPUT);
@@ -55,17 +50,17 @@ void setup() {
 void loop() {
 
   // read the input on analog pin 1:
-  int potValue = analogRead(A1);
+  int potValue = analogRead(POT_PIN);
   // scale the pot input to a range that accomodates the MIC input
-  potValue = ((potValue /50) + 320);
+  potValue = ((potValue /10) + 300);
 
   //  read the input on analog pin 0:
   int micValue = analogRead(MIC_PIN);
 
   if (micValue > potValue){
 
-    //Serial.println(potValue);   Uncomment to debug values
-    //Serial.println(micValue);   Uncomment to debug values
+    //Serial.println(potValue);     //Uncomment to debug values
+    //Serial.println(micValue);     //Uncomment to debug values
 
     for(int i = 0; i<numTimes; i++){
 
