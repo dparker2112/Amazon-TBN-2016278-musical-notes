@@ -12,8 +12,8 @@
 int micValue = 0;             // initialize MIC value
 int numTimes = 3;             // number of times (-1) to repeat show
 int pixel = 0;                // which pixel in the string gets lit
-int wait1 = 0;                // delay between chasing pixels in a strand
-int wait2 = 400;              // delay before turning each strand off
+int wait1 = 0;                // delay between chasing pixels in a note
+int wait2 = 300;              // delay before turning each strand off
 int wait3 = 30;               // delay in fading G clef
 int fadeAmount = 15;          // increment to fade G clef
 int brightness = 0;           // how bright the clef is
@@ -36,7 +36,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(144, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  //Serial.begin(9600);  //Uncomment to debug values
+  Serial.begin(9600);  //Uncomment to debug values
   // initialize the G clef pin as an output:
   pinMode(CLEF_PIN, OUTPUT);
   pinMode(MIC_PIN, INPUT);
@@ -59,61 +59,61 @@ void loop() {
 
   if (micValue > potValue){
 
-    //Serial.println(potValue);     //Uncomment to debug values
-    //Serial.println(micValue);     //Uncomment to debug values
+    Serial.println(potValue);     //Uncomment to debug values
+    Serial.println(micValue);     //Uncomment to debug values
 
     for(int i = 0; i<numTimes; i++){
 
         analogWrite(CLEF_PIN, 255);
 
-          // turns on strand 1 pixels
-          for(pixel = 0; pixel < 35; pixel ++) {
+          // turns on note 1 pixels
+          for(pixel = 0; pixel < 36; pixel ++) {
             strip.setPixelColor(pixel,255,0,0);
             strip.show();
             //delay(wait1);
           }
-          // turns off strand 1 pixels
+          // turns off note 1 pixels
           delay(wait2);
-          for(pixel = 0; pixel < 35; pixel ++) {
+          for(pixel = 0; pixel < 36; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
-          // turns on strand 2 pixels
-          for(pixel = 36; pixel < 71; pixel ++) {
+          // turns on note 2 pixels
+          for(pixel = 36; pixel < 72; pixel ++) {
             strip.setPixelColor(pixel,0,255,0);
             strip.show();
             //delay(wait1);
           }
-          // turns off strand 2 pixels
+          // turns off note 2 pixels
           delay(wait2);
-          for(pixel = 36; pixel < 71; pixel ++) {
+          for(pixel = 36; pixel < 72; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
-          // turns on strand 3 pixels
-          for(pixel = 72; pixel < 107; pixel ++) {
+          // turns on note 3 pixels
+          for(pixel = 72; pixel < 108; pixel ++) {
             strip.setPixelColor(pixel,0,0,255);
             strip.show();
             //delay(wait1);
           }
-          // turns off strand 3 pixels
+          // turns off note 3 pixels
           delay(wait2);
-          for(pixel = 72; pixel < 107; pixel ++) {
+          for(pixel = 72; pixel < 108; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
 
-          // turns on strand 4 pixels
-          for(pixel = 108; pixel < 143; pixel ++) {
+          // turns on note 4 pixels
+          for(pixel = 108; pixel < 144; pixel ++) {
             strip.setPixelColor(pixel,0,150,150);
             strip.show();
             //delay(wait1);
           }
-          // turns off strand 4 pixels
+          // turns off note 4 pixels
           delay(wait2);
-          for(pixel = 108; pixel < 143; pixel ++) {
+          for(pixel = 108; pixel < 144; pixel ++) {
             strip.setPixelColor(pixel,0,0,0);
             strip.show();
           }
