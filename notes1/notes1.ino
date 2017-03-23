@@ -68,7 +68,7 @@ void loop() {
 
           // turns on note 1 pixels
           for(pixel = 0; pixel < 36; pixel ++) {
-            strip.setPixelColor(pixel,255,0,0);
+            strip.setPixelColor(pixel,255,0,248);
             strip.show();
             //delay(wait1);
           }
@@ -81,7 +81,7 @@ void loop() {
 
           // turns on note 2 pixels
           for(pixel = 36; pixel < 72; pixel ++) {
-            strip.setPixelColor(pixel,0,255,0);
+            strip.setPixelColor(pixel,255,232,0);
             strip.show();
             //delay(wait1);
           }
@@ -94,7 +94,7 @@ void loop() {
 
           // turns on note 3 pixels
           for(pixel = 72; pixel < 108; pixel ++) {
-            strip.setPixelColor(pixel,0,0,255);
+            strip.setPixelColor(pixel,0,255,215);
             strip.show();
             //delay(wait1);
           }
@@ -107,7 +107,7 @@ void loop() {
 
           // turns on note 4 pixels
           for(pixel = 108; pixel < 144; pixel ++) {
-            strip.setPixelColor(pixel,0,150,150);
+            strip.setPixelColor(pixel,255,0,13);
             strip.show();
             //delay(wait1);
           }
