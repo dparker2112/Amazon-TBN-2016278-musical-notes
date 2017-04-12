@@ -10,6 +10,7 @@ TO END  ITS CURRENT CYCLE.”
 */
 
 
+
 #include <Arduino.h>
 
 #include <Adafruit_NeoPixel.h>
@@ -24,9 +25,9 @@ TO END  ITS CURRENT CYCLE.”
 int micValue = 0;             // initialize MIC value
 int numTimes = 3;             // number of times (-1) to repeat show
 int pixel = 0;                // which pixel in the string gets lit
-int wait1 = 0;                // delay between chasing pixels in a note
+int wait1 = 10;                // delay between chasing pixels in a note
 int wait2 = 300;              // delay before turning each strand off
-int wait3 = 30;               // delay in fading G clef
+int wait3 = 15;               // delay in fading G clef
 int fadeAmount = 15;          // increment to fade G clef
 int brightness = 0;           // how bright the clef is
 
@@ -48,7 +49,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(144, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);  //Uncomment to debug values
+  //Serial.begin(9600);  //Uncomment to debug values
   // initialize the G clef pin as an output:
   pinMode(CLEF_PIN, OUTPUT);
   pinMode(MIC_PIN, INPUT);
@@ -71,8 +72,8 @@ void loop() {
 
   if (micValue > potValue){
 
-    Serial.println(potValue);     //Uncomment to debug values
-    Serial.println(micValue);     //Uncomment to debug values
+    //Serial.println(potValue);     //Uncomment to debug values
+    //Serial.println(micValue);     //Uncomment to debug values
 
     for(int i = 0; i<numTimes; i++){
 
@@ -132,25 +133,22 @@ void loop() {
       }
 
       //fades down the G clef from max to min in increments of 5 points:
-      for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 5) {
+      for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 2) {
        // sets the value (range from 0 to 255):
        analogWrite(CLEF_PIN, fadeValue);
        // wait for 30 milliseconds to see the dimming effect
-       delay(30);
+       delay(wait3);
       }
-    delay(2000);
+    delay(4000);
 
   }
    else {
 
       // turns off all the neopixels
-        for(pixel = 0; pixel < 61; pixel ++) {
+        //for(pixel = 0; pixel < 145; pixel ++) {
 
-        strip.setPixelColor(pixel,0,0,0);
+        //strip.setPixelColor(pixel,0,0,0);
         strip.show();
-        //delay(wait2);
         }
 
    }
-
-}
