@@ -27,8 +27,7 @@ int numTimes = 3;             // number of times (-1) to repeat show
 int pixel = 0;                // which pixel in the string gets lit
 int wait1 = 10;                // delay between chasing pixels in a note
 int wait2 = 300;              // delay before turning each strand off
-int wait3 = 15;               // delay in fading G clef
-int fadeAmount = 15;          // increment to fade G clef
+int wait3 = 30;               // delay in fading G clef
 int brightness = 0;           // how bright the clef is
 
 // Parameter 1 = number of pixels in strip
@@ -131,14 +130,16 @@ void loop() {
             strip.show();
           }
       }
-
-      //fades down the G clef from max to min in increments of 5 points:
-      for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 2) {
+      int fadeAmount = 25;          // increment to fade G clef
+      //fades down the G clef from max to min in increments of fadeAmount:
+      for (int fadeValue = 255 ; fadeValue >= 0; fadeValue = fadeValue - fadeAmount) {
        // sets the value (range from 0 to 255):
        analogWrite(CLEF_PIN, fadeValue);
        // wait for 30 milliseconds to see the dimming effect
        delay(wait3);
+       fadeAmount = fadeAmount - 1;
       }
+    analogWrite(CLEF_PIN, 0);
     delay(4000);
 
   }
